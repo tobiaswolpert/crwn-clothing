@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 const cartReducer = (state=INITIAL_STATE, action) => {
     switch(action.type) {
         case CartActionType.TOGGLE_CART_HIDDEN:
-            return Object.assign({},INITIAL_STATE, {hidden: !state.hidden})
+            return Object.assign({}, state, {hidden: !state.hidden})
         case CartActionType.ADD_ITEM:
             return {...state, cartItems: addItemToCart(state.cartItems, action.payload)}
         default:
