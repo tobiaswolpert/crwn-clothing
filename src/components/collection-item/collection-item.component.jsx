@@ -3,7 +3,7 @@ import './collection-item.styles.scss';
 import CustomButton from "../custom-button/custom-button.component";
 import { addItem } from "../../redux/cart/cart.actions"; 
 import { connect } from "react-redux";
-import cartReducer from "../../redux/cart/cart.reducer";
+// import cartReducer from "../../redux/cart/cart.reducer";
 
 const CollectionItem = ({item, addItem}) => {
     const {name, price, imageUrl} = item;    
@@ -23,12 +23,12 @@ const CollectionItem = ({item, addItem}) => {
     )
 }
 
-const mapStateToProps = ({ cart }) => ({
-    cartItems: cartReducer.cartItems
-})
+// const mapStateToProps = ({ cart }) => ({
+//     cartItems: cartReducer.cartItems
+// })
 
 const mapDispatchToProps = dispatch => ({
     addItem: item => dispatch(addItem(item))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CollectionItem);
+export default connect(null, mapDispatchToProps)(CollectionItem);
