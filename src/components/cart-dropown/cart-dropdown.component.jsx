@@ -8,7 +8,8 @@ import { Link, withRouter } from "react-router-dom";
 import { toggleCartHidden } from "../../redux/cart/cart.actions";
  
 
-const CartDropdown = ({ cartItems, history, toggleCartHidden }) => (
+const CartDropdown = ({ cartItems, history, toggleCartHidden }) => {
+    return (
     <div className="cart-dropdown">
         <div className="cart-items">
             {cartItems.length ? cartItems.map(cartItem=> 
@@ -21,6 +22,7 @@ const CartDropdown = ({ cartItems, history, toggleCartHidden }) => (
             </Link>
         </div>
 )
+            }
 
 const mapStateToProps = state => {
     return{
