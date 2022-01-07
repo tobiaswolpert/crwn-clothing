@@ -5,10 +5,6 @@ import { deleteItem, addItem, removeItem } from "../../redux/cart/cart.actions";
 
 
 const CheckOutItem = ({ item, deleteItem, addItem, removeItem }) => {
-
-    if (item.quantity<=0){
-        deleteItem(item);
-    }
     return (
     <div className="checkout-item">
         <div className="image-container">
