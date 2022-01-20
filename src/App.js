@@ -11,7 +11,7 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { connect } from 'react-redux'; 
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
-
+import { selectCollectionForPreview } from './redux/shop/shop.selectors';
 
 
 class App extends React.Component {
@@ -31,11 +31,9 @@ class App extends React.Component {
               ...snapShot.data()
             });
           });
-          
-        
-      } else {
-        setCurrentUser(userAuth);
       }
+      setCurrentUser(userAuth);
+      // addCollectionAndDocuments('collections', collectionsArray.map(({title, items}) => ({title, items})));
     });
   }
 
@@ -60,7 +58,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: selectCurrentUser(state)
+  currentUser: selectCurrentUser(state),
+  collectionsArray: selectCollectionForPreview(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
