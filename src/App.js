@@ -7,16 +7,20 @@ import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import CheckoutPage from './pages/checkout/checkout.component';
-import { connect } from 'react-redux'; 
+import { useSelector, useDispatch } from 'react-redux'; 
 import { checkUserSession } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
-import { selectCollectionForPreview } from './redux/shop/shop.selectors';
+// import { selectCollectionForPreview } from './redux/shop/shop.selectors';
 
 
-const App = ({currentUser, checkUserSession}) => {
+const App = () => {
+  
+  const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
+    
   useEffect(() => {
-    checkUserSession()
-  },[checkUserSession]);
+    dispatch(checkUserSession())
+  },[dispatch]);
 
 
   return (
@@ -32,14 +36,4 @@ const App = ({currentUser, checkUserSession}) => {
     );
 }
 
-
-const mapStateToProps = state => ({
-  currentUser: selectCurrentUser(state),
-  collectionsArray: selectCollectionForPreview(state)
-})
-
-const mapDispatchToProps = (dispatch) => ({
-    checkUserSession: () => dispatch(checkUserSession())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
