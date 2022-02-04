@@ -7,9 +7,7 @@ const mapStateToProps = state => ({
     isLoading: selectIsCollectionFetching(state)
 })
 
-// const {isLoading} = this.props;
 
-// console.log("Funktioniert",this.props.isLoading)
 
 const CollectionsOverviewContainer = connect(mapStateToProps)(withSpinner(CollectionsOverview))
 
