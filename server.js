@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const path = require('path')
+const path = require('path');
+const compression = require('compression')
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 
@@ -10,10 +11,10 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const app = express();
 const port = process.env.PORT || 5000;
 
-
+app.use(compression);
 app.use(bodyParser.json()); //Convert responses to json
 app.use(bodyParser.urlencoded({extended: true})); //Encode URL strings correctly
-app.use(cors()) //Cross Origin Request
+app.use(cors()); //Cross Origin Request
 
 if (process.env.NODE_ENV === 'production'){
     app.use(express.static(path.join(__dirname, 'client/build')));
